@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CleanArchMVC.Domain.Entities
 {
-    internal class Entity
+    public abstract class Entity
     {
+        public int Id { get; protected set; }
     }
 }

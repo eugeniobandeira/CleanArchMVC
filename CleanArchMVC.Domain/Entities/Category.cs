@@ -3,10 +3,11 @@ using CleanArchMVC.Domain.Validation;
 
 namespace CleanArchMVC.Domain.Entities
 {
-    public sealed class Category
+    public sealed class Category : Entity
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
+
+        public ICollection<Product> Products { get; set; }
 
         public Category(string name)
         {
@@ -19,7 +20,6 @@ namespace CleanArchMVC.Domain.Entities
             Id = id;
             ValidateDomain(name);
         }
-        public ICollection<Product> Products { get; set; }
 
         private void ValidateDomain(string name)
         {
@@ -28,6 +28,11 @@ namespace CleanArchMVC.Domain.Entities
             DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short, minimum 3 charecters");
 
             Name = name;
+        }
+
+        public void Update(string name)
+        {
+            ValidateDomain(name);
         }
     }
 }
