@@ -35,12 +35,15 @@ namespace CleanArchMVC.Domain.Entities
         private void ValidateDomain(string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(string.IsNullOrWhiteSpace(name), "Invalid name. Name is required");
+
             DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short, minimum 3 characters");
 
-            DomainExceptionValidation.When(string.IsNullOrWhiteSpace(description), "Invalid description. Description is required");
-            DomainExceptionValidation.When(description.Length < 5, "Invalid description, too short, minimum 5 characters");
+            DomainExceptionValidation.When(string.IsNullOrWhiteSpace(description), "Invalid name. Name is required");
+
+            DomainExceptionValidation.When(description.Length < 5, "Invalid name, too short, minimum 3 characters");
 
             DomainExceptionValidation.When(price < 0, "Invalid price value");
+
             DomainExceptionValidation.When(stock < 0, "Invalid stock value");
 
             if (!string.IsNullOrEmpty(image))
@@ -49,11 +52,11 @@ namespace CleanArchMVC.Domain.Entities
             }
 
             Name = name;
-            Description = description;
-            Price = price;
+            Description = description; 
+            Price = price; 
             Stock = stock;
             Image = image;
-        }
 
+        }
     }
 }
