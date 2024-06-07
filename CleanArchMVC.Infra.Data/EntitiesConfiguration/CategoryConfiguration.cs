@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchMVC.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CleanArchMVC.Infra.Data.EntitiesConfiguration
 {
-    internal class CategoryConfiguration
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
+        public void Configure(EntityTypeBuilder<Category> builder)
+        {
+            builder.HasKey( t  => t.Id );
+            builder.Property( t => t.Name).HasMaxLength(100).IsRequired();
+
+            //Seed
+            builder.HasData(
+                new Category(1, "Material Escolar"),
+                new Category(2, "Eletronicos"),
+                new Category(3, "Acessórios")
+                );
+        }
     }
 }
