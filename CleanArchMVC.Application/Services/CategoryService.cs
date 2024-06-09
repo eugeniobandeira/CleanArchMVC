@@ -12,7 +12,7 @@ namespace CleanArchMVC.Application.Services
         private readonly IMapper _mapper;
         public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
         {
-            categoryRepository = _categoryRepository;
+            _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
 
